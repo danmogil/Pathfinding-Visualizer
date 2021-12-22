@@ -1,0 +1,22 @@
+body {
+  margin: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: default;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-shadow: inherit;
+  border-radius: 15px;
+  padding: 5px 0px;
+}
