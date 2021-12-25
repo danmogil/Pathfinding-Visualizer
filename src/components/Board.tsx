@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import '../styles/board.css';
 
-import { Ref } from '../helpers/types';
-import Cell from './Cell';
+import { Ref, CellSettings } from '../helpers/types';
 import { getRandomIntInclusive } from '../helpers/helpers';
+import Cell from './Cell';
 
 interface Props {
   navRef: Ref;
@@ -14,14 +14,7 @@ interface State {
     numOfRows: Number;
     numOfColumns: Number;
   };
-  cells: CellObj[][];
-}
-
-interface CellObj {
-  row: Number;
-  col: Number;
-  isStart: Boolean;
-  isEnd: Boolean;
+  cells: CellSettings[][];
 }
 
 class Board extends Component<Props, State> {
@@ -35,24 +28,25 @@ class Board extends Component<Props, State> {
 
   componentDidMount() {
     this.setBoardDimensions();
-    // this.initCells();
-    console.log('ran');
   }
 
   setBoardDimensions() {
     const navHeight = this.props.navRef.current.offsetHeight;
-    const navWidth = this.props.navRef.current.offsetWidth;
+    const navWidth = window.innerWidth;
     const cellSize = Cell.cellSizePX;
-    this.setState({
-      boardDimensions: {
-        numOfRows: Math.trunc((window.innerHeight - navHeight) / cellSize),
-        numOfColumns: Math.trunc(navWidth / cellSize),
+    this.setState(
+      {
+        boardDimensions: {
+          numOfRows: (window.innerHeight - navHeight) / cellSize,
+          numOfColumns: navWidth / cellSize,
+        },
       },
-    }, this.initCells);
+      this.initCells
+    );
   }
 
   initCells() {
-    const cells: CellObj[][] = [];
+    const cells: CellSettings[][] = [];
     const numOfRows = this.state.boardDimensions!.numOfRows;
     const numOfColumns = this.state.boardDimensions!.numOfColumns;
     const { row: startRow, col: startCol } = this.selectRandomCell(); //start node
@@ -63,7 +57,7 @@ class Board extends Component<Props, State> {
     }
 
     for (let row = 1; row <= numOfRows; row++) {
-      const currRow: CellObj[] = [];
+      const currRow: CellSettings[] = [];
       for (let col = 1; col <= numOfColumns; col++) {
         currRow.push({
           row,
@@ -87,12 +81,17 @@ class Board extends Component<Props, State> {
   }
 
   render() {
+    let resizeTimeout: NodeJS.Timeout;
+    window.onresize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => window.location.reload(), 100);
+    };
     return (
       <table>
         {this.state.cells!.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((col, colIndex) => (
-              <Cell key={`r${rowIndex}c${colIndex}`} />
+              <Cell key={`r${rowIndex}c${colIndex}`} settings={col} />
             ))}
           </tr>
         ))}

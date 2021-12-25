@@ -1,29 +1,41 @@
 import { Component } from 'react';
-
 import '../styles/cell.css';
 
-interface Props {
+import { CellSettings } from '../helpers/types';
 
+interface Props {
+  settings: CellSettings;
 }
 
-class Cell extends Component<Props> {
-  static cellSizePX = 35;
+interface State {
+  class:
+    | 'start'
+    | 'end'
+    | 'visited'
+    | 'unvisited'
+    | 'wall'
+    | 'target'
+    | 'shortest-path';
+}
 
-//   constructor(props: Props) {
-//       super(props);
-//   }
+class Cell extends Component<Props, State> {
+  static cellSizePX = 30;
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      class: this.props.settings.isStart
+        ? 'start'
+        : this.props.settings.isEnd
+        ? 'end'
+        : 'unvisited',
+    };
+  }
 
   render() {
-    return <td className="cell" />;
+    const { row, col, isStart, isEnd } = this.props.settings;
+    return <td className={`cell ${this.state.class}`} />;
   }
 }
 
 export default Cell;
-
-//starting 
-//visited 
-// end
-// wall
-// target
-// shortest path
-// unvisited

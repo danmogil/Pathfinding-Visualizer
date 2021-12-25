@@ -17,6 +17,13 @@ button {
   font-weight: inherit;
   color: inherit;
   text-shadow: inherit;
+  cursor: inherit;
   border-radius: 15px;
   padding: 5px 0px;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
