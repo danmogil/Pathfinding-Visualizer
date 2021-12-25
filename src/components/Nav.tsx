@@ -1,10 +1,16 @@
 import '../styles/nav.css';
 
-const Nav: React.FC = () => {
+import { Ref } from '../helpers/types';
+
+interface Props {
+  navRef: Ref;
+}
+
+const Nav: React.FC<Props> = ({ navRef }) => {
   return (
-    <div className="nav">
+    <div id="nav" ref={navRef}>
       <h2>Pathfinding Visualizer</h2>
-      <div className="options">
+      <div id="options">
         <div className="dropdown">
           <span>Algorithms</span>
           <div className="dropdown-content">

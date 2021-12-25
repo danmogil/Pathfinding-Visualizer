@@ -2,7 +2,7 @@
   --navBGcolor: #034078;
 }
 
-.nav {
+#nav {
   background-color: var(--navBGcolor);
   display: flex;
   align-items: center;
@@ -12,13 +12,13 @@
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.options {
+#options {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.options > * {
+#options > * {
   padding-right: 20px;
   padding-left: 20px;
 }
