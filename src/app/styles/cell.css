@@ -1,4 +1,4 @@
-.cell {
+td {
   width: 30px;
   height: 30px;
   border: 1px solid #9fd6ff;
@@ -9,12 +9,20 @@
   background-image: url('/public/images/start-pin.svg');
   background-repeat: no-repeat;
   background-position: bottom;
+  cursor: grab;
+}
+
+.start:active,
+.end:active,
+.target:active {
+  cursor: grabbing;
 }
 
 .end {
   background-image: url('/public/images/end-pin.svg');
   background-repeat: no-repeat;
   background-position: bottom;
+  cursor: grab;
   /* animation: pulse-animation 2s infinite; */
 }
 
@@ -24,19 +32,27 @@
 }
 
 .unvisited {
-  background: transparent;
+  background-color: transparent;
 }
 
 .wall {
   background: #0a2b38;
   border: none;
+  cursor: pointer;
 }
 
 .target {
   background-image: url('/public/images/target.svg');
   background-repeat: no-repeat;
   background-position: 50% 35%;
+  cursor: pointer;
   /* animation: pulse-animation 2s infinite; */
+}
+
+.weight {
+  background-image: url('/public/images/weight.svg');
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .shortest-path {
