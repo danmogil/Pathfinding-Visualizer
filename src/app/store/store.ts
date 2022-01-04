@@ -1,19 +1,10 @@
-import {
-  configureStore,
-  combineReducers,
-  ThunkAction,
-  Action,
-} from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
-import {Ref} from '../helpers/types'
-import gridReducer from './slices/gridSlice';
-
-const rootReducer = combineReducers({
-  gridReducer,
-});
+import { Ref } from '../helpers/types';
+import storeReducer from './storeReducer';
 
 const store = configureStore({
-  reducer: gridReducer,
+  reducer: storeReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

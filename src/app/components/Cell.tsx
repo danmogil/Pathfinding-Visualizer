@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import '../styles/cell.css';
 
 import { ClassName, DragEvent, MouseOverEvent } from '../helpers/types';
@@ -19,6 +19,8 @@ let dragStartClass: ClassName;
 const Cell: FC<Props> = ({ pos }) => {
 
   const className: ClassName = useSelector((state: RootState) => state.grid[pos.row][pos.col]);
+
+  // useEffect(() => console.log('cell rerender'))
 
   const handleMouseOver = (e: MouseOverEvent) => {
     const startsWith = ['unvisited', 'visited', 'shortest-path'];

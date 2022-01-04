@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import '../styles/grid.css';
 
@@ -11,6 +11,7 @@ const Grid: FC = () => {
     (state: RootState) => state.grid,
     (left, right) => left.length === right.length
   );
+  // useEffect(() => console.log('grid rerender'))
   return (
     <table>
       <tbody>
